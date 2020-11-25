@@ -17,7 +17,7 @@ func main() {
 	})
 
 	r.NoRoute(func(c *gin.Context) {
-		temp := strings.Replace(c.Request.URL.Path, "/", "", 1)
+		temp := strings.Replace(c.Request.URL.Path, "/", "", 2)
 		log.Println("*******", c.Request.URL.Path)
 		c.String(http.StatusOK, temp)
 	})
