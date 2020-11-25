@@ -1,8 +1,9 @@
 package main
 
 import (
+	"log"
 	"net/http"
-	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,8 +16,10 @@ func main() {
 		})
 	})
 
-	r.GET(os.Getenv("loader"), func(c *gin.Context) {
-		c.String(http.StatusOK, os.Getenv("loader"))
+	r.NoRoute(func(c *gin.Context) {
+		temp := strings.Replace(c.Request.URL.Path, "/", "", 1)
+		log.Println("*******", c.Request.URL.Path)
+		c.String(http.StatusOK, temp)
 	})
 
 	r.Run()
