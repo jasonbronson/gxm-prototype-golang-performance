@@ -7,7 +7,7 @@ ADD . /app
 
 ENV GO111MODULE=on
 #development only
-RUN ["go", "get", "github.com/githubnemo/CompileDaemon"]
+#RUN ["go", "get", "github.com/githubnemo/CompileDaemon"]
 
 #production
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /dist/api /app/main.go
