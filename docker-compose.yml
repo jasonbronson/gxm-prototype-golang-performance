@@ -1,0 +1,23 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "go run main.go"
+    env_file: ./.env
+    security_opt:
+      - "seccomp:unconfined"
+    volumes:
+      - .:/app
+      - ./dist:/dist
+    ports:
+      - "8081:8080"
+    networks:
+      - backend
+
+volumes:
+  db-data:
+
+networks:
+  backend:
